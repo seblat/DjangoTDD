@@ -54,3 +54,28 @@ urlpatterns = [
     path('lists/the-only-list-in-the-world/', views.view_list, name='view_list'),
 ]
 ```
+
+Chapter 7.9
+## Original implementation (Django 1.1)
+```
+from django.db import models
+
+class List(models.Model):
+    pass
+
+
+class Item(models.Model):
+    text = models.TextField(default='')
+    list = models.ForeignKey(List, default=None)
+```
+## Django 2.2 implementation
+```
+from django.db import models
+
+class Item(models.Model):
+    text = models.TextField(default='')
+    list = models.ForeignKey('List', default=None, on_delete=models.CASCADE)
+
+class List(models.Model):
+    pass
+```
