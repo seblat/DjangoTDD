@@ -79,3 +79,40 @@ class Item(models.Model):
 class List(models.Model):
     pass
 ```
+
+Chapter 7.10
+## Original implementation (Django 1.1)
+```
+urlpatterns = [
+    url(r'^$', views.home_page, name='home'),
+    url(r'^lists/new$', views.new_list, name='new_list'),
+    url(r'^lists/(.+)/$', views.view_list, name='view_list'),
+]
+```
+## Django 2.2 implementation
+```
+urlpatterns = [
+    path('', views.home_page, name='home'),
+    path('lists/new', views.new_list, name='new_list'),
+    path('lists/<int:list_id>/', views.view_list, name='view_list'),
+]
+```
+Chapter 7.12
+## Original implementation (Django 1.1)
+```
+urlpatterns = [
+    url(r'^$', views.home_page, name='home'),
+    url(r'^lists/new$', views.new_list, name='new_list'),
+    url(r'^lists/(\d+)/$', views.view_list, name='view_list'),
+    url(r'^lists/(\d+)/add_item$', views.add_item, name='add_item'),
+]
+```
+## Django 2.2 implementation
+```
+urlpatterns = [
+    path('', views.home_page, name='home'),
+    path('lists/new', views.new_list, name='new_list'),
+    path('lists/<int:list_id>/', views.view_list, name='view_list'),
+    path('lists/<int:list_id>/add_item', views.add_item, name='add_item')
+]
+```
