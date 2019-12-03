@@ -10,6 +10,7 @@ v = {editable = true,version = "*"}
 [packages]
 django = "~=2.2"
 selenium = "~=3.141.0"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
