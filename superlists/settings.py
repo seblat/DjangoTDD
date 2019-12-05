@@ -11,19 +11,23 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import logging
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-if 'DJANGO_DEBUG_FALSE' in os.environ:
-    DEBUG = False
-    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
-    ALLOWED_HOSTS = [os.environ['SITENAME']]
-else:
+if os.environ['DJANGO_DEBUG_TRUE'] == 'y':
+    logging.getLogger(__name__).warning("\U0001F534 \U0001F534 \U0001F534" +
+                                        "  RUNNING IN DEBUG MODE! " +
+                                        "\U0001F534 \U0001F534 \U0001F534")
     DEBUG = True
     SECRET_KEY = 'insecure-key-for-dev'
     ALLOWED_HOSTS = []
+else:
+    DEBUG = False
+    SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+    ALLOWED_HOSTS = [os.environ['SITENAME']]
 
 
 # Application definition

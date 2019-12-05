@@ -4,3 +4,4 @@ geckodriver.log
 .idea/
 __pycache__/
 .env
+.python-version
